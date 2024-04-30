@@ -1,0 +1,186 @@
+<div class="container">
+    <div id="result" class="section">
+        <h2 class="display-1 text-center">Take home pay Calculator</h2>
+        <br />
+        <p class="text-justify">
+            Use our take home pay calculator to see what your annual, monthly and weekly take-home could be after Income
+            Tax, National Insurance, student loan, pension contribution and more.
+        </p>
+    </div>
+
+    <!-- Results -->
+    <div class="card" *ngIf="isResultAvailable">
+        <div class="card-header">
+            <h2 class="display-2">For a salary of <span class="fa fa-pound-sign"> {{incomeValue || 0 |
+                    number:'1.2-2'}}, </span> after tax you'll take home</h2>
+        </div>
+        <div class="card-body">
+            <ul class="row">
+                <li class="col flex-align-horizontal-center" style="flex-direction: column;">
+                    <h2 class="display-2 text-center"><span class="fa fa-pound-sign"> {{ takeHomePerMonth | number:
+                            '1.2-2' }}</span></h2>
+                    <span style="color: black;">per month</span>
+                </li>
+                <li class="col flex-align-horizontal-center" style="flex-direction: column;">
+                    <h2 class="display-2 text-center"><span class="fa fa-pound-sign"> {{ takeHomePerMonth* 12 | number:
+                            '1.2-2'}}</span></h2>
+                    <span style="color: black;">per year</span>
+                </li>
+            </ul>
+            <h3>Tax calculation</h3>
+            <div class="table-responsive" style="overflow: hidden; padding-left: 25px; padding-right: 25px;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="text-color-lbg-charcoal">Gross Income</td>
+                            <td class="text-color-lbg-charcoal align-text-right"><span class="fa fa-pound-sign"></span> {{incomeValue || 0 | number:'1.2-2'}}</td>
+                        </tr>
+                        <tr *ngIf="pensionDeduction > 0">
+                            <td class="text-color-lbg-charcoal">Pension deductions</td>
+                            <td class="text-color-lbg-charcoal align-text-right"><span class="fa fa-pound-sign"></span> {{pensionDeduction || 0 | number:'1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-color-lbg-charcoal">Taxable income</td>
+                            <td class="text-color-lbg-charcoal align-text-right"><span class="fa fa-pound-sign"></span> {{taxableIncomeValue || 0 | number:'1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-color-lbg-charcoal">National Insurance</td>
+                            <td class="text-color-lbg-charcoal align-text-right"><span class="fa fa-pound-sign"></span> {{insuaranceValue || 0 | number:'1.2-2'}}</td>
+                        </tr>
+                        <tr *ngIf="loanValue > 0">
+                            <td class="text-color-lbg-charcoal">Student loan</td>
+                            <td class="text-color-lbg-charcoal align-text-right"><span class="fa fa-pound-sign"></span> {{loanValue || 0 | number:'1.2-2'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="card-footer">
+            <h3 class="display-3">This could give you a budget of <span class="fa fa-pound-sign"> {{ budgetAmount |
+                    number:'1.2-2'}} to buy a home.</span></h3>
+            <p>
+                We have calculated a rough estimate of what you might be able to borrowfor a mortage. DIscover what your
+                monthly repayments could be by creating a free recommendation.
+            </p>
+            <button class="btn btn-round btn-lg" type="submit" [disabled]="!calculatorForm.valid"
+                style="width: 100%;">See your budget</button>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="calculatorForm" (ngSubmit)="submit()" class="form ng-untouched ng-pristine ng-valid">
+        <div class="card card-register background-lbg-grey" style="padding: 10px;">
+            <div class="card-header"><span class="display-3 text-color-lbg-charcoal">Calculate your take-home pay</span></div>
+            <div class="card-body">
+                <h4>Employment type</h4>
+                <tabset #mortgageType class="nav-tabs-primary">
+                    <tab #permanentTab id="permanent" heading="Permanent" (selectTab)="onTabChange(permanentTab.id)">
+                    </tab>
+                    <tab #employedTab id="employed" heading="Self employed" (selectTab)="onTabChange(employedTab.id)">
+                    </tab>
+                </tabset>
+                <div id="IncomeDetails" class="form-group">
+                    <h4>Gross annual income <sup>required</sup></h4>
+                    <span>This is the amount you earn before tax</span>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('incomeValue')?.touched && calculatorForm.get('incomeValue')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="incomeValue" [(ngModel)]="incomeValue" class="form-control"
+                            placeholder="{{36500 | number:'1.2-2'}}" type="text" required>
+                    </div>
+                    <div
+                        *ngIf="calculatorForm.get('incomeValue')?.touched && calculatorForm.get('incomeValue')?.invalid">
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['required']"> 'Gross annual income' is
+                            required</div>
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['minLength']"> 'Gross annual income'
+                            value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['pattern']"> Input currency in the
+                            format {{'10000000' | number:'1.2-2' }}</div>
+                            <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+
+                    <br />
+
+                    <h4>Monthly pension contribution</h4>
+                    <tabset #mortgageType class="nav-tabs-primary">
+                        <tab #cashTab id="cash" heading="Fixed Amount" (selectTab)="onPensionChange(cashTab.id)">
+                            <div class="input-group"
+                                [ngClass]="calculatorForm.get('pensionValue')?.touched && calculatorForm.get('pensionValue')?.invalid ? 'has-danger': ''">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                                </div>
+                                <input formControlName="pensionValue" [(ngModel)]="pensionValue" class="form-control"
+                                    [placeholder]="0 | number:'1.2-2'" type="text">
+                            </div>
+                            <div
+                                *ngIf="calculatorForm.get('pensionValue')?.touched && calculatorForm.get('pensionValue')?.invalid">
+                                <div *ngIf="calculatorForm.get('pensionValue')?.errors?.['minLength']"
+                                    class="text-color-lbg-charcoal"> 'Monthly pension
+                                    contribution' value must be a value greater than 0</div>
+                                <div *ngIf="calculatorForm.get('pensionValue')?.errors?.['pattern']"
+                                    class="text-color-lbg-charcoal"> Input currency in
+                                    the format {{'10000000' | number:'1.2-2' }}</div>
+                                    <div *ngIf="calculatorForm.get('pensionValue')?.errors?.['min']"> Input cannot be negative</div>
+                            </div>
+                        </tab>
+                        <tab #percentTab id="percent" heading="Percentage" (selectTab)="onPensionChange(percentTab.id)">
+                            <div class="input-group"
+                                [ngClass]="calculatorForm.get('pensionPercentage')?.touched && calculatorForm.get('pensionPercentage')?.invalid ? 'has-danger': ''">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-percent text-color-lbg-charcoal"></i></div>
+                                </div>
+                                <input formControlName="pensionPercentage" [(ngModel)]="pensionPercentage"
+                                    class="form-control" [placeholder]="0 | number:'1.2-2'" type="text">
+                            </div>
+                            <div
+                                *ngIf="calculatorForm.get('pensionPercentage')?.touched && calculatorForm.get('pensionPercentage')?.invalid">
+                                <div *ngIf="calculatorForm.get('pensionPercentage')?.errors?.['minLength']"
+                                    class="text-color-lbg-charcoal"> 'Monthly
+                                    pension contribution' value must be a value greater than 0</div>
+                                <div *ngIf="calculatorForm.get('pensionPercentage')?.errors?.['pattern']"
+                                    class="text-color-lbg-charcoal"> Input a valid
+                                    percentage</div>
+                                <div *ngIf="calculatorForm.get('pensionPercentage')?.errors?.['min']"
+                                    class="text-color-lbg-charcoal"> Input cannot be
+                                    negative</div>
+                                <div *ngIf="calculatorForm.get('pensionPercentage')?.errors?.['max']"
+                                    class="text-color-lbg-charcoal"> Input cannot be
+                                    greater than 100</div>
+                            </div>
+                        </tab>
+                    </tabset>
+
+                    <br />
+
+                    <h4>Student loan monthly amount</h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('loanValue')?.touched && calculatorForm.get('loanValue')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="loanValue" [(ngModel)]="loanValue" class="form-control"
+                            [placeholder]="0 | number:'1.2-2'" type="text">
+                    </div>
+                    <div *ngIf="calculatorForm.get('loanValue')?.touched && calculatorForm.get('loanValue')?.invalid">
+                        <div *ngIf="calculatorForm.get('loanValue')?.errors?.['minLength']"> 'Student loan monthly
+                            amount' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('loanValue')?.errors?.['pattern']"> Input currency in the format
+                            {{'10000000' | number:'1.2-2' }}</div>
+                            <div *ngIf="calculatorForm.get('loanValue')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer" style="background-color: inherit; border-top: none;">
+            <button class="btn btn-round btn-lg" type="submit" [disabled]="!calculatorForm.valid"
+                style="width: 100%;">Calculate</button>
+        </div>
+
+    </form>
+</div>

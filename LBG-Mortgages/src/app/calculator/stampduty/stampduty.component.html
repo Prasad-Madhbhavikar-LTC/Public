@@ -1,0 +1,158 @@
+<div class="container">
+    <div id="result" class="section">
+        <h2 class="display-1 text-center">Stamp Duty Calculator</h2>
+        <br />
+        <p class="text-justify">
+            Stamp Duty Land Tax (SDLT) is a tax you pay when you buy property in the UK - whether you're purchasing a
+            house, flat or land, Use our Stamp Duty calculator to figure out what you'll pay on your main home.
+        </p>
+    </div>
+
+    <!-- Results -->
+    <div class="card" *ngIf="isResultAvailable">
+        <div class="card-header">
+            <h2 class="display-2" *ngIf="stampDutyFor === 'first'">As a First-time buyer you'll pay <span
+                    class="fa fa-pound-sign"> {{calculatedStampDuty || 0 |
+                    number:'1.2-2'}} </span> stamp duty</h2>
+            <h2 class="display-2" *ngIf="stampDutyFor === 'move'">When movining home you'll pay <span
+                    class="fa fa-pound-sign"> {{calculatedStampDuty || 0 |
+                    number:'1.2-2'}} </span> stamp duty</h2>
+            <h2 class="display-2" *ngIf="stampDutyFor === 'second'">Buying an additional property, you'll pay <span
+                    class="fa fa-pound-sign">
+                    {{calculatedStampDuty || 0 |
+                    number:'1.2-2'}} </span> stamp duty</h2>
+        </div>
+        <div class="card-body">
+            <span class=""> If you're ready to get mortgage, the next step is to answer a few more questions. Then an
+                award wining advisor will find the right mortgage deal for you.</span>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-round btn-lg" type="submit" [disabled]="!calculatorForm.valid"
+                style="width: 100%;">Get a personalized rate</button>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="calculatorForm" (ngSubmit)="submit()" class="form ng-untouched ng-pristine ng-valid">
+        <div class="card card-register background-lbg-grey" style="padding: 10px;">
+            <div class="card-header"><span class="display-3 text-color-lbg-charcoal">Calculate your stamp duty</span></div>
+            <div class="card-body">
+                <h4>I am a</h4>
+                <tabset #residentType class="nav-tabs-primary">
+                    <tab #residentTab id="resident" heading="UK Resident" (selectTab)="onResidentChange(residentTab.id)">
+                    </tab>
+                    <tab #nonRsidentTab id="nonResident" heading="Non UK Resident"
+                        (selectTab)="onResidentChange(nonRsidentTab.id)">
+                    </tab>
+                </tabset>
+                <div id="IncomeDetails" class="form-group">
+                    <h4>Property price <sup>required</sup></h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('propertyValue')?.touched && calculatorForm.get('propertyValue')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="propertyValue" [(ngModel)]="propertyValue" class="form-control"
+                            placeholder="{{230000 | number:'1.2-2'}}" type="text" required>
+                    </div>
+                    <div
+                        *ngIf="calculatorForm.get('propertyValue')?.touched && calculatorForm.get('propertyValue')?.invalid">
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['required']"> 'Property price' is
+                            required</div>
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['minLength']"> 'Property price'
+                            value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['pattern']"> Input currency in the
+                            format {{'10000000' | number:'1.2-2' }}</div>
+                            <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+
+                    <br />
+
+                    <h4>Where are you buying</h4>
+                    <div class="form-check form-check-radio">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="locationTypeRadio" id="locationTypeRadio"
+                                value="england" (change) = "onLocationChange('england')" checked>
+                                England or Northen Island
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="locationTypeRadio" id="locationTypeRadio"
+                                value="scotland" (change) = "onLocationChange('scotland')">
+                                Scotland
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio radio-lbg">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="locationTypeRadio" id="locationTypeRadio"
+                                value="wales" (change) = "onLocationChange('wales')">
+                                Wales
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+
+                    <!-- <div class="tab-as-radio"> -->
+                        <!-- <tabset #locationType class="nav-tabs-primary">
+                            <tab #englandTab id="england" heading="England or Northen Island"
+                                (selectTab)="onLocationChange(englandTab.id)">
+                            </tab>
+                            <tab #scotlandTab id="scotland" heading="Scotland"
+                                (selectTab)="onLocationChange(scotlandTab.id)">
+                            </tab>
+                            <tab #walesTab id="wales" heading="Wales" (selectTab)="onLocationChange(walesTab.id)">
+                            </tab>
+                        </tabset> -->
+                    <!-- </div> -->
+
+                    <br />
+
+                    <h4>What are you looking to do</h4>
+                    <!-- <tabset #stampDutyType class="nav-tabs-primary">
+                        <tab #firstHomeTab id="first" heading="Buy my first home"
+                            (selectTab)="onStampDutyTypeChange(firstHomeTab.id)">
+                        </tab>
+                        <tab #secondHomeTab id="second" heading="Buy an additional property"
+                            (selectTab)="onStampDutyTypeChange(secondHomeTab.id)">
+                        </tab>
+                        <tab #moveHomeTab id="move" heading="Move home"
+                            (selectTab)="onStampDutyTypeChange(moveHomeTab.id)">
+                        </tab>
+                    </tabset> -->
+                    <div class="form-check form-check-radio">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="stampDutyTypeRadio" id="stampDutyTypeRadio"
+                                value="first" (change) = "onStampDutyTypeChange('first')" checked>
+                                Buy my first home
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="stampDutyTypeRadio" id="stampDutyTypeRadio"
+                                value="second" (change) = "onStampDutyTypeChange('second')">
+                                Buy an additional property
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio">
+                        <label class="form-check-label radio-lbg">
+                            <input class="form-check-input" type="radio" name="stampDutyTypeRadio" id="stampDutyTypeRadio"
+                                value="move" (change) = "onStampDutyTypeChange('move')">
+                                Move home
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer" style="background-color: inherit; border-top: none;">
+            <button class="btn btn-round btn-lg" type="submit" [disabled]="!calculatorForm.valid"
+                style="width: 100%;">Calculate</button>
+        </div>
+
+    </form>
+</div>
