@@ -18,27 +18,37 @@ export class CatalogueComponent {
     {
       id: "cur_acc",
       serviceType: "Current Account",
-      helpText: "Some help to be displayed here"
+      helpText: "Some help to be displayed here",
+      isEnabled: true,
+      defaultSelected: true
     },
     {
       id: "sav_acc",
       serviceType: "Savings Account",
-      helpText: "Some help to be displayed here"
+      helpText: "Some help to be displayed here",
+      isEnabled: false,
+      defaultSelected: false
     },
     {
       id: "mor_acc",
       serviceType: "Mortgage Account",
-      helpText: "Some help to be displayed here"
+      helpText: "Some help to be displayed here",
+      isEnabled: false,
+      defaultSelected: false
     },
     {
       id: "cre_acc",
       serviceType: "Credit Card",
-      helpText: "Some help to be displayed here"
+      helpText: "Some help to be displayed here",
+      isEnabled: false,
+      defaultSelected: false
     },
     {
       id: "veh_acc",
       serviceType: "Vehicle Loan",
-      helpText: "Some help to be displayed here"
+      helpText: "Some help to be displayed here",
+      isEnabled: false,
+      defaultSelected: false
     }];
 
   protected mpinPasswordConfirm?: string;
