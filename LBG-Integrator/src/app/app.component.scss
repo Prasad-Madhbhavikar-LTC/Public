@@ -1,0 +1,89 @@
+#wrapper {
+    position  : relative;
+    width     : auto;
+    min-height: 100%;
+    background: none;
+    min-width : 980px;
+}
+
+#header-wrapper {
+    background-color: #006A4D;
+}
+
+/* breadcrumb */
+.breadcrumb {
+    display         : flex;
+    list-style      : none;
+    margin          : 20px;
+    padding         : 0;
+    gap             : 5px;
+    height          : 100%;
+    background-color: transparent !important;
+}
+
+.breadcrumb li a {
+    display        : block;
+    height         : 100%;
+    padding        : 10px;
+    box-sizing     : border-box;
+    text-decoration: none;
+    color          : #fff;
+    background     : #006a4d;
+    font-size      : 25px;
+    font-family    : sans-serif;
+}
+
+.selected {
+    background: #75B94E !important;
+}
+
+.breadcrumb li a:focus-visible {
+    background: #006a4d;
+}
+
+.breadcrumb {
+    --s: 20px;
+}
+
+.breadcrumb li {
+    clip-path: polygon(0 0, calc(100% - var(--s)) 0, 100% 50%, calc(100% - var(--s)) 100%, 0 100%, var(--s) 50%);
+}
+
+.breadcrumb li a {
+    padding: 10px calc(10px + var(--s));
+}
+
+.breadcrumb li {
+    margin: 0 calc(var(--s)/-2);
+}
+
+// .breadcrumb li:first-child {
+//     margin-left: 0;
+// }
+
+// .breadcrumb li:last-child {
+//     margin-right: 0;
+// }
+
+.breadcrumb li:last-child {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--s) 50%);
+    // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--s) 50%, var(--s) 0%);
+}
+
+.breadcrumb li:first-child {
+    clip-path: polygon(0 0, calc(100% - var(--s)) 0, 100% 50%, calc(100% - var(--s)) 100%, 0 100%);
+}
+
+.flex-align-horizontal-center {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+.disabled-link {
+    pointer-events : none;
+    color          : currentColor;
+    cursor         : not-allowed;
+    opacity        : 0.5;
+    text-decoration: none;
+}

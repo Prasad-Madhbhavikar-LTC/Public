@@ -1,0 +1,57 @@
+table {
+    border-collapse: collapse;
+    width          : 100%;
+}
+
+tr td {
+    border: none;
+}
+
+.align-vertically {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : 263px;
+}
+
+.outer {
+    position: relative;
+    margin: 0 auto;
+    padding: 12px 36px;
+    border-bottom: 0;
+	text-align: left;
+	max-width: 928px;
+	min-width: 320px;
+}
+
+
+/* submit button */
+.submitAction {
+    width             : 100%;
+    color             : #ffffff;
+    height            : 48px;
+    background-color  : #006a4d;
+    border            : 1px solid #006a4d;
+    margin            : 10px 0px;
+    font-size         : 17px;
+    font-weight       : bold;
+    line-height       : 24px;
+    -webkit-appearance: none;
+    -moz-appearance   : none;
+    appearance        : none;
+}
+
+.btn {
+    color             : #ffffff;
+    height            : 48px;
+    background-color  : #006a4d;
+    padding           : 0px 20px;
+    border            : 1px solid #006a4d;
+    margin            : 10px 0px;
+    font-size         : 17px;
+    font-weight       : bold;
+    line-height       : 24px;
+    -webkit-appearance: none;
+    -moz-appearance   : none;
+    appearance        : none;
+}

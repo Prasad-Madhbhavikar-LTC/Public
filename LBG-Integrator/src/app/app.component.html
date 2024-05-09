@@ -1,0 +1,25 @@
+<div id="wrapper">
+  <div id="header-wrapper">
+
+    <app-header></app-header>
+  </div>
+  <div class="container-fluid">
+    <ul class="breadcrumb flex-align-horizontal-center">
+      <li><a href="javascript:void(0)" [routerLink]="['/validate']" [queryParams]="{ s: 0 }"
+          [ngClass]="{selected: selectedStep === 0}">Validate Details</a></li>
+      <li><a id='services-link' href="javascript:void(0)" [routerLink]="['/services']" [queryParams]="{ s: 1 }"
+          [ngClass]="{selected: selectedStep === 1}" class="disabled-link">Select services</a></li>
+      <li><a id='success-link' href="javascript:void(0)" [routerLink]="['/success']" [queryParams]="{ s: 2 }"
+          [ngClass]="{selected: selectedStep === 2}" class="disabled-link">Complete</a></li>
+    </ul>
+  </div>
+
+  <app-customer *ngIf="selectedStep === 0"></app-customer>
+  <br><hr><br>
+  <app-bank *ngIf="selectedStep === 0"></app-bank>
+  <!-- FIXME: Add a next button -->
+  <app-catalogue *ngIf="selectedStep === 1"></app-catalogue>
+  <app-success *ngIf="selectedStep === 2"></app-success>
+
+  <app-footer></app-footer>
+</div>

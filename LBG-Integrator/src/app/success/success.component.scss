@@ -1,0 +1,29 @@
+.row{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width          : 100%;
+}
+
+tr td {
+    border: none;
+}
+
+.outer {
+    position: relative;
+    margin: 0 auto;
+    padding: 12px 36px;
+    border-bottom: 0;
+	text-align: left;
+	max-width: 928px;
+	min-width: 320px;
+}
+
+.flex-align-horizontal-center {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
