@@ -144,10 +144,10 @@ Open a Power shell window and run the following commands
 
     ```
     export SPARK_VERSION='3.3'
-    export PATH="${PATH}:/home/prasad/.local/bin"
+    export PATH=${PATH}:~/.local/bin
     ```
 
-    You can also use the below aliases.
+    You can also use the below aliases in the `~/.bashrc` file to save some keystrokes.
 
     ```  
     alias py=python3
