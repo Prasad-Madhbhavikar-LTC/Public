@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: DataJobConfigProvider
+data:
+ config:
+     path: /home/prasad/Development/DataMigratorDemo/Processing_Folder/Job_dump/
+     fileExtension: .yaml
+     accessDataSuffix: access_data
+     destinationInfoSuffix: destination_details
+     jobConfigInfoSuffix: job_configurations
+     destinationSupportedFileFormats: avro,parquet,csv
+     sourceSupportedFileFormats: json,parquet,csv
+     gcsBucket:
+    
