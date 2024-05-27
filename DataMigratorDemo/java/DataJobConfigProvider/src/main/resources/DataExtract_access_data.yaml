@@ -1,8 +1,0 @@
----
-jobName: "DataExtract"
-jobDescription: "Extract Load"
-configuration:
-  secret:
-    vault_url: "www.ValutURL.com"
-    access_key: "#@!@#"
-    secret_key: "1234"
