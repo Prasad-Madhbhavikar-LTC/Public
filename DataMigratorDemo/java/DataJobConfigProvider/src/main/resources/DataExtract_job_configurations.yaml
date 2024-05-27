@@ -1,0 +1,37 @@
+---
+jobName: "DataExtract"
+jobDesc: "Description"
+source:
+  source_url: "www.SQLDeveloper.url"
+  is_streaming: true
+  job_Configurations:
+  - schema_keyspace: "Sample"
+    tables:
+    - name: "Employee"
+      columns:
+      - name: "ID"
+        type: "VarChar2()"
+        value_range: null
+        predicates: null
+        joins: null
+      - name: "name"
+        type: "VarChar2()"
+        value_range: "Sudeshna"
+        predicates:
+        - "LIKE"
+        joins: null
+      - name: "Dept_ID"
+        type: "VarChar2()"
+        value_range: null
+        predicates: null
+        joins: null
+    - name: "Dept"
+      columns:
+      - name: "Dept_ID"
+        type: "VarChar2()"
+        value_range: "3"
+        predicates: null
+        joins:
+        - type: "INNER_JOIN"
+          joiningTable: "Employee"
+          joiningColumn: "Dept_ID"
