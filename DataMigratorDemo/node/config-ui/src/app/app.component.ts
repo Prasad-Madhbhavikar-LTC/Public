@@ -260,7 +260,7 @@ export class AppComponent {
       this.httpService.post("/datajobconfig/v1/api/destinationDetail", payload).subscribe();
       this.websocketService.getMessages().subscribe(message => {
         console.log(message);
-        let timestamp = (new Date(message.meta.creation_time)).toLocaleString();
+        let timestamp = (new Date(message.meta.creation_time * 1000)).toLocaleString();
         let eventName = message.data.event_name;
         let log = JSON.stringify(message.data.event_data);
         let logConsole = this.document.getElementById('console') as HTMLElement;

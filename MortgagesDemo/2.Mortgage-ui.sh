@@ -1,4 +1,4 @@
 echo "Starting the UI Dev server"
-cd node/config-ui
+cd Mortgage-ui
 npm install
 ng serve
