@@ -1,0 +1,22 @@
+# Gradle-specific ignores
+.gradle/
+build/
+
+# Node.js-specific ignores
+node_modules/
+package-lock.json
+
+# Angular-specific ignores
+dist/
+node_modules/
+
+# Python-specific ignores
+__pycache__/
+*.pyc
+
+# IDE-specific ignores (e.g., PyCharm, IntelliJ, VS Code)
+.idea/
+.vscode/
+
+# Ignore log files
+*.log
