@@ -1,0 +1,108 @@
+<div class="row outer">
+    <div class="col-lg-6">
+        <h2>Source Bank Details</h2>
+        <table>
+            <tr>
+                <td><strong>Account Number</strong></td>
+                <td>{{sourceBank.accountNumber}}</td>
+            </tr>
+            <tr>
+                <td><strong>Account Type</strong></td>
+                <td>{{sourceBank.accountType}}</td>
+            </tr>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td>{{sourceBank.name}}</td>
+            </tr>
+            <tr>
+                <td><strong>Branch</strong></td>
+                <td>{{sourceBank.branchDetails.branch}}</td>
+            </tr>
+            <tr>
+                <td><strong>Address</strong></td>
+                <td>{{sourceBank.branchDetails.address?.address1}}, {{sourceBank.branchDetails.address?.address2}}</td>
+            </tr>
+            <tr>
+                <td><strong>City</strong></td>
+                <td>{{sourceBank.branchDetails.address?.city}}</td>
+            </tr>
+            <tr>
+                <td><strong>State</strong></td>
+                <td>{{sourceBank.branchDetails.address?.state}}</td>
+            </tr>
+            <tr>
+                <td><strong>Pin Code</strong></td>
+                <td>{{sourceBank.branchDetails.address?.pincode}}</td>
+            </tr>
+            <tr>
+                <td><strong>MICR Code</strong></td>
+                <td>{{sourceBank.micr}}</td>
+            </tr>
+            <tr>
+                <td><strong>IFSC Code</strong></td>
+                <td>{{sourceBank.branchDetails.ifsc}}</td>
+            </tr>
+            <tr>
+                <td><strong>PAN Number</strong></td>
+                <td>{{sourceBank.pan}}</td>
+            </tr>
+            <tr>
+                <td><strong>Active Services</strong></td>
+                <td>{{sourceBank.services?.join(', ')}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-lg-6">
+        <h2>Destination Bank Details</h2>
+        <table>
+            <tr>
+                <td><strong>Application reference number</strong></td>
+                <td>{{destinationBank.integrationID}}</td>
+            </tr>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td>{{destinationBank.name}}</td>
+            </tr>
+            <tr>
+                <td><strong>Branch</strong></td>
+                <td>{{destinationBank.branchDetails.branch}}</td>
+            </tr>
+            <tr>
+                <td><strong>Address</strong></td>
+                <td>{{destinationBank.branchDetails.address?.address1}},
+                    {{destinationBank.branchDetails.address?.address2}}</td>
+            </tr>
+            <tr>
+                <td><strong>City</strong></td>
+                <td>{{destinationBank.branchDetails.address?.city}}</td>
+            </tr>
+            <tr>
+                <td><strong>State</strong></td>
+                <td>{{destinationBank.branchDetails.address?.state}}</td>
+            </tr>
+            <tr>
+                <td><strong>Pin Code</strong></td>
+                <td>{{destinationBank.branchDetails.address?.pincode}}</td>
+            </tr>
+            <tr>
+                <td><strong>MICR Code</strong></td>
+                <td>{{destinationBank.micr}}</td>
+            </tr>
+            <tr>
+                <td><strong>IFSC Code</strong></td>
+                <td>{{destinationBank.branchDetails.ifsc}}</td>
+            </tr>
+            <tr>
+                <td><strong>PAN Number</strong></td>
+                <td>{{destinationBank.pan}}</td>
+            </tr>
+            <tr>
+                <td><strong>KYC Validation</strong></td>
+                <td>{{kycStatus === 1 ? "Approved" : kycStatus ===0 ? "In Progress" : "Rejected"}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- <button id="submitButton" type="submit" class="submitAction" disabled>Details are correct</button> -->
+    <!-- <button id="cancelButton" type="submit" class="submitAction" disabled>Cancel</button> -->
+</div>
