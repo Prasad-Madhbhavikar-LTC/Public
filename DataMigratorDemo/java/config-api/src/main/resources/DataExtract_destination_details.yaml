@@ -1,0 +1,9 @@
+---
+jobName: "DataExtract"
+jobDesc: "Extract Load"
+destination:
+  format: "avro"
+  bucket: "GCP:Location"
+  path: "classpath"
+  name: "sudes"
+  prefix: "123"

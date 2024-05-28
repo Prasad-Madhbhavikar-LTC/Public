@@ -1,0 +1,9 @@
+---
+jobName: "Test_job_pre-demo"
+jobDescription: "Test Job for demo"
+destination:
+  format: "csv"
+  bucket: "GCP:SOMEBUCKET"
+  path: "/home/prasad/Development/Public/DataMigratorDemo/Processing_Folder/Sink"
+  name: "Some demo test"
+  prefix: "Test"

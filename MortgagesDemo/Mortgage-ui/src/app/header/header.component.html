@@ -1,0 +1,245 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100" id="navbar-top">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="title navbar-brand" placement="bottom" tooltip="Designed by LTC" [routerLink]="['/']">
+                <h2 style="margin-bottom: 0px;"><span> LBG </span> Mortgages</h2>
+            </a>
+            <button aria-controls="navigation-index" aria-label="Toggle navigation" class="navbar-toggler"
+                [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed" id="navigation" type="button">
+                <div class="fa fa-align-justify navbar-brand"></div>
+            </button>
+        </div>
+        <div class="navbar-collapse justify-content-end" [collapse]="isCollapsed" id="navigation">
+            <div class="navbar-collapse-header">
+                <div class="row">
+                    <div class="col-6 collapse-brand"><a [routerLink]="['/']"> <span> LBG </span> Mortgages </a></div>
+                    <div class="col-6 collapse-close text-right">
+                        <button aria-controls="navigation-index" aria-label="Toggle navigation" class="navbar-toggler"
+                            [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed" id="navigation"
+                            type="button">
+                            <i class="fa fa-window-close"> </i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar-nav">
+                <li class="dropdown nav-item" dropdown>
+                    <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle
+                        href="javascript:void(0)">
+                        <i [ngClass]="{'fa fa-binoculars': !isCollapsed}"> </i> I am Looking to
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons" *dropdownMenu>
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <i class="tim-icons icon-paper"> </i> Save a house deposit
+                        </a>
+                        <!-- Remortgage -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"> </i> Get a new deal
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-image-02"> </i> Reduce my payments
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Buy someone out
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Increase my affordability
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Release funds
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Get insurance
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>See live interest rates
+                        </a>
+                        <!-- Buy a home -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Increase my budget
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Buy my first home
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Buy with guarantor
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Move home
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Become a landlord
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Help someone pay
+                        </a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item" dropdown>
+                    <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle
+                        href="javascript:void(0)">
+                        <i [ngClass]="{'fa fa-smile': !isCollapsed}"> </i> Savings
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons" *dropdownMenu>
+                        <!-- Lifetime ISA -->
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <i class="tim-icons icon-paper"> </i> Cash Lifetime ISA
+                        </a>
+                        <!-- Latest Articles -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"> </i> What is a LISA?
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-image-02"> </i> Can I buy without a deposit?
+                        </a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item" dropdown>
+                    <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle
+                        href="javascript:void(0)">
+                        <i [ngClass]="{'fa fa-balance-scale': !isCollapsed}"> </i> Mortgages
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons" *dropdownMenu>
+                        <!-- Purchase -->
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <i class="tim-icons icon-paper"> </i> Standard Mortgage
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"> </i> Shared Ownership
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-image-02"> </i> Self Employed
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Tier 2 Visa
+                        </a>
+                        <!-- Remortgage -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Standard remortgage
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Product transfer
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Interst only
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Part and part
+                        </a>
+                        <!-- Buy to Let -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Standard Buy to Let
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Buy to Let remortgage
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Family But to Let
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Let to Buy
+                        </a>
+                        <!-- Increase your affordability -->
+                        <!-- With a guarantor -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Income Boost - JBSP
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Deposit Boost
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Savings as Security
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Deposit Loan
+                        </a>
+                        <!-- Without a guarantor -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>5.5x Income mortgage
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Professional Mortgage
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Long-term fixed rate
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Discover all our mortgage schemes
+                        </a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item" dropdown>
+                    <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle
+                        href="javascript:void(0)">
+                        <i [ngClass]="{'fa fa-book': !isCollapsed}"> </i> Learn
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons" *dropdownMenu>
+                        <!-- Latest articles -->
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <i class="tim-icons icon-paper"> </i> Is not a good time to buy?
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"> </i> How to buy someone out of a house
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-image-02"> </i>HOw long should I fix my mortgage for?
+                        </a>
+                        <!-- Our mission -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Why we make home happen
+                        </a>
+                        <!-- Meet the team -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> The people making magic happen
+                        </a>
+                        <!-- Testimonials -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Real stories of our happy customers
+                        </a>
+                        <!-- Contact Us -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>7 days a week - Email, phone & live chat
+                        </a>
+                        <!-- Careers -->
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Join our award-winning team
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>Guides
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i>FAQs
+                        </a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item" dropdown>
+                    <a id="dropdownCalculators" aria-expanded="false" area-haspopup="true"
+                        class="nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle
+                        href="javascript:void(0)">
+                        <i [ngClass]="{'fa fa-calculator': !isCollapsed}"> </i> Calculators
+                    </a>
+                    <div area-labelledby="dropdownCalculators" class="dropdown-menu dropdown-with-icons" *dropdownMenu>
+                        <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/calculator/mortgage']" [queryParams]="{ t: 'm' }">
+                            <i class="tim-icons icon-paper"> </i> Mortgage calculator
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-bullet-list-67"> </i> Compare mortgage rates
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/calculator/stampduty']">
+                            <i class="tim-icons icon-image-02"> </i> Calculate stamp duty
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/calculator/mortgage']" [queryParams]="{ t: 'r' }">
+                            <i class="tim-icons icon-single-02"> </i> Remotagage calculator
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="tim-icons icon-single-02"> </i> Compare remortgage rates
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/calculator/takehome']">
+                            <i class="tim-icons icon-single-02"> </i>Take home pay calculator
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

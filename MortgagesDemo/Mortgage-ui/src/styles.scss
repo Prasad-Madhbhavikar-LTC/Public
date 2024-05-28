@@ -1,0 +1,212 @@
+@use './assets/scss/blk-design-system.scss';
+
+$opacity-8: rgba(40, 40, 40, 0.8) !default;
+
+$white: #ffffff !default;
+$gray-100: #f6f9fc !default;
+$gray-200: #e9ecef !default;
+$gray-300: #e3e3e3 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default; // Line footer color
+$gray-700: #525f7f !default; // Line p color
+$gray-800: #32325d !default; // Line heading color
+$gray-900: #212529 !default;
+$lbg-grey : #FAFAFA !default;
+$link-disabled: #666666 !default;
+$transparent-bg: transparent !default;
+$light-bg: #f5f6fa !default;
+$dark-background: #555555 !default;
+
+$blue: #18509d !default;
+$indigo: #5603ad !default;
+$purple: #8a1c69 !default;
+$pink: #f3a4b5 !default;
+$red: #ce143d !default;
+$orange: #cd4b13 !default;
+$yellow: #ffd600 !default;
+$green: #2dce89 !default;
+$teal: #00838f !default;
+$cyan: #2bffc6 !default;
+$lbg-core-green: #007C43 !default;
+$lbg-bright-green: #62B34F !default;
+$lbg-charcoal: #282828 !default;
+
+.background-lbg-core-green {
+    background-color: $lbg-core-green;
+    color: $lbg-grey !important;
+}
+
+.background-lbg-bright-green {
+    background-color: $lbg-bright-green;
+    color: $lbg-grey !important;
+}
+
+.background-lbg-charcoal {
+    background-color: $lbg-charcoal;
+    color: $lbg-grey !important;
+}
+
+.background-lbg-grey {
+    background-color: #62b34f29 !important;
+    padding: 40px;
+}
+
+.text-color-lbg-core-green {
+    color: $lbg-core-green !important;
+
+}
+.text-color-lbg-charcoal {
+    color: $lbg-charcoal !important;
+}
+
+.radio-lbg{
+    color: $opacity-8 !important;
+    font-size: large !important;
+}
+
+.flex-align-horizontal-center {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.align-text-right{
+    text-align: right;
+}
+
+.form-label {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-header {
+    padding: 20px;
+}
+
+.form-control {
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.fa-pound-sign {
+    font-size: 25px;
+    color: $lbg-charcoal;
+}
+
+.navbar.bg-primary > div > div > a > h2 {
+    color: $white;
+}
+
+.navbar.navbar-transparent > div > div > a {
+    color: inherit;
+    background: linear-gradient(to right, $lbg-core-green, $lbg-bright-green);
+    background-clip: text;
+}
+
+.btn-neutral.btn-default {
+    color: $lbg-core-green;
+}
+
+.card {
+    background-color: #62b34f29 !important;
+    padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .prime-btn, .prime-btn:hover, .prime-btn:active, .prime-btn:focus {
+        font-size: 14px;
+    }
+    .btn {
+        padding: 11px 10px;
+    }
+}
+
+.dropdown-item:hover {
+    background-color: $lbg-charcoal !important;
+    color: $lbg-bright-green !important;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dropdown-item {
+    color: $lbg-core-green !important;
+    font-weight: 600;
+}
+
+.nav-link {
+    font-weight: 600;
+}
+
+.navbar.bg-primary {
+    background-color: $lbg-core-green !important;
+}
+
+.form-control::placeholder {
+    color: #cdcfd9;
+    opacity: 1;
+}
+
+.form-control::-ms-input-placeholder {
+    color: #cdcfd9;
+    border: none;
+}
+
+.input-group {
+    border-color: #CBD5E0 !important;
+    box-shadow: 0 0 0 2px #B5B7C2;
+    border-radius: 7px;
+    background-color: $white;
+}
+
+.input-group-prepend .input-group-text, .input-group-prepend .input-group-text {
+    border: none;
+}
+
+.input-group:focus-within {
+    box-shadow: 0 0 0 2px $lbg-charcoal;
+
+    .fa-pound-sign {
+        opacity: 1 !important;
+    }
+}
+
+.footer {
+    background-color: #f1f1f1;
+}
+
+.footer .nav-link {
+    color: $lbg-core-green;
+}
+
+.follow-us-text {
+    height: 2.375rem;
+    line-height: 2.375rem;
+    width: 120px;
+    float: left;
+    color: $lbg-core-green;
+}
+
+.back-to-top {
+    float: right;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px !important;
+}
+
+.back-to-top h4 {
+    padding-bottom: 0px;
+    color: $lbg-core-green;
+}
+
+.card-header {
+    padding-left: 15px;
+}
+
+.home-btn {
+    width: 330px;
+    display: block;
+}

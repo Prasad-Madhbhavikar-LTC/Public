@@ -1,0 +1,9 @@
+---
+jobName: "Test_job_pre-demo"
+jobDesc: "Test Job for demo"
+source:
+  source_type: "FILE_SYSTEM"
+  path: "/home/prasad/Development/Public/DataMigratorDemo/Processing_Folder/Source/fake_customer_data.csv"
+  file_Type: "csv"
+  job_Configurations:
+  - columns: []

@@ -1,0 +1,480 @@
+<!-- Form -->
+<div class="container" *ngIf="!isResultAvailable">
+    <div class="section" *ngIf="isMortgagaRoute">
+        <h2 class="display-1 text-center">Mortgage Calculator</h2>
+        <br />
+        <p class="text-justify form-label">
+            Play around with our mortgage calculator to see what you could borrow. We specialise in increasing home
+            buyer’s budgets - discover your true buying budget here. This calculator is only an estimate of how much you
+            may be able to borrow, create a plan to get a free personalised recommendation, and then seek mortgage
+            advice.
+        </p>
+    </div>
+    <div class="section" *ngIf="!isMortgagaRoute">
+        <h2 class="display-1  text-center">Remortgage Calculator</h2>
+        <br />
+        <p class="text-justify form-label">
+            Looking to remortgage? Use our Remortgage Calculator to see what your monthly repayments could look like,
+            and how much you could save by switching to a new deal. This calculator is only an estimate of how much you
+            may be able to borrow, create a plan to get a free personalised recommendation, and then seek mortgage
+            advice.
+        </p>
+    </div>
+    <form [formGroup]="calculatorForm" (ngSubmit)="submit()" class="form ng-untouched ng-pristine ng-valid">
+        <div class="card card-register background-lbg-grey">
+            <div class="card-header"><span class="display-3  text-color-lbg-charcoal">Discover how much you can really borrow</span></div>
+            <div class="card-body">
+                <h4 class="form-label">I want to</h4>
+                <tabset #mortgageType class="nav-tabs-primary">
+                    <tab #purchaseTab id="purchase" heading="Purchase" (selectTab)="onTabChange(purchaseTab.id)"
+                        [ngClass]="{active: isMortgagaRoute}"></tab>
+                    <tab #remortgageTab id="remortgage" heading="Re-mortgage"
+                        (selectTab)="onTabChange(remortgageTab.id)" [ngClass]="{active: !isMortgagaRoute}"></tab>
+                </tabset>
+                <div id="buyersDetails" class="form-group">
+                    <h4 class="form-label">My household income <sup>required</sup></h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('incomeValue')?.touched && calculatorForm.get('incomeValue')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="incomeValue" [(ngModel)]="incomeValue" class="form-control"
+                            placeholder="{{50000 | number:'1.2-2'}}" type="text" required>
+                    </div>
+                    <div *ngIf="calculatorForm.get('incomeValue')?.touched && calculatorForm.get('incomeValue')?.invalid">
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['required']"> 'My household income' is required</div>
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['minLength']"> 'My household income' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                        <div *ngIf="calculatorForm.get('incomeValue')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+
+                    <br />
+
+                    <h4 class="form-label">{{textboxlabel}}  <sup>required</sup></h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('propertyValue')?.touched && calculatorForm.get('propertyValue')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="propertyValue" [(ngModel)]="propertyValue" class="form-control"
+                            [placeholder]="placeholderAmount | number:'1.2-2'" type="text" required>
+                    </div>
+                    <div *ngIf="calculatorForm.get('propertyValue')?.touched && calculatorForm.get('propertyValue')?.invalid">
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['required']"> '{{textboxlabel}}' is required</div>
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['minLength']"> '{{textboxlabel}}' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                        <div *ngIf="calculatorForm.get('propertyValue')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="propertyDetails" class="card card-register background-lbg-grey" *ngIf="isMortgagaRoute">
+            <div class="card-header"><span class="display-3 text-color-lbg-charcoal">Have a property in mind?</span></div>
+            <div class="card-body">
+                <div class="form-group">
+                    <h4 class="form-label">Property price</h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('propertyPrice')?.touched && calculatorForm.get('propertyPrice')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="propertyPrice" [(ngModel)]="propertyPrice" class="form-control"
+                            placeholder="{{0 | number:'1.2-2'}}" type="text">
+                    </div>
+                    <div *ngIf="calculatorForm.get('propertyPrice')?.touched && calculatorForm.get('propertyPrice')?.invalid">
+                        <div *ngIf="calculatorForm.get('propertyPrice')?.errors?.['minLength']"> 'Property price' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('propertyPrice')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                        <div *ngIf="calculatorForm.get('propertyPrice')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="mortgageDetails" class="card card-register background-lbg-grey" *ngIf="!isMortgagaRoute">
+            <div class="card-header"><span class="display-3 text-color-lbg-charcoal">Existing mortage</span></div>
+            <div class="card-body">
+                <div class="form-group">
+                    <h4 class="form-label">Mortgage balance</h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('mortgageBalance')?.touched && calculatorForm.get('mortgageBalance')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="mortgageBalance" [(ngModel)]="mortgageBalance"
+                            class="form-control" placeholder="{{0 | number:'1.2-2'}}" type="text" minlength="2">
+                    </div>
+                    <div *ngIf="calculatorForm.get('mortgageBalance')?.touched && calculatorForm.get('mortgageBalance')?.invalid">
+                        <div *ngIf="calculatorForm.get('mortgageBalance')?.errors?.['minLength']"> 'Mortgage balance' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('mortgageBalance')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                        <div *ngIf="calculatorForm.get('mortgageBalance')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+                </div>
+                <br />
+                <h4 class="form-label">Additional borrowing </h4>
+                <div class="input-group"
+                    [ngClass]="calculatorForm.get('mortgageBorrowing')?.touched && calculatorForm.get('mortgageBorrowing')?.invalid ? 'has-danger': ''">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                    </div>
+                    <input formControlName="mortgageBorrowing" [(ngModel)]="mortgageBorrowing"
+                        class="form-control" placeholder="{{0 | number:'1.2-2'}}" type="text" minlength="2">
+                </div>
+                <div *ngIf="calculatorForm.get('mortgageBorrowing')?.touched && calculatorForm.get('mortgageBorrowing')?.invalid">
+                    <div *ngIf="calculatorForm.get('mortgageBorrowing')?.errors?.['minLength']"> 'Additional borrowing' value must be a value greater than 9</div>
+                    <div *ngIf="calculatorForm.get('mortgageBorrowing')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                    <div *ngIf="calculatorForm.get('mortgageBorrowing')?.errors?.['min']"> Input cannot be negative</div>
+                </div>
+            </div>
+        </div>
+        <div id="boosterDetails" class="card card-register background-lbg-grey">
+            <div class="card-header">
+                <span class="display-3 text-color-lbg-charcoal">Add a Booster (Guarantor) to increase your borrowing</span>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <p class="card-text form-label">
+                        A Booster (similar to a Guarantor) is a friend or family member who is willing to support
+                        your
+                        mortgage application, either using their income, savings or property.
+                    </p>
+                    <br /><br />
+                    <h4 class="form-label">Booster's income</h4>
+                    <div class="input-group"
+                        [ngClass]="calculatorForm.get('boosterIncome')?.touched && calculatorForm.get('boosterIncome')?.invalid ? 'has-danger': ''">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                        </div>
+                        <input formControlName="boosterIncome" [(ngModel)]="boosterIncome" class="form-control"
+                            placeholder="{{0 | number:'1.2-2'}}" type="text" minlength="2">
+                    </div>
+                    <div *ngIf="calculatorForm.get('boosterIncome')?.touched && calculatorForm.get('boosterIncome')?.invalid">
+                        <div *ngIf="calculatorForm.get('boosterIncome')?.errors?.['minLength']"> 'Booster's income' value must be a value greater than 9</div>
+                        <div *ngIf="calculatorForm.get('boosterIncome')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                        <div *ngIf="calculatorForm.get('boosterIncome')?.errors?.['min']"> Input cannot be negative</div>
+                    </div>
+                    <div *ngIf="isMortgagaRoute">
+                        <br />
+
+                        <h4 class="form-label">Booster's savings</h4>
+                        <div class="input-group"
+                            [ngClass]="calculatorForm.get('boosterSavings')?.touched && calculatorForm.get('boosterSavings')?.invalid ? 'has-danger': ''">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                            </div>
+                            <input formControlName="boosterSavings" [(ngModel)]="boosterSavings"
+                                class="form-control" placeholder="{{0 | number:'1.2-2'}}" type="text" minlength="2">
+                        </div>
+                        <div *ngIf="calculatorForm.get('boosterSavings')?.touched && calculatorForm.get('boosterSavings')?.invalid">
+                            <div *ngIf="calculatorForm.get('boosterSavings')?.errors?.['minLength']"> 'Booster's savings' value must be a value greater than 9</div>
+                            <div *ngIf="calculatorForm.get('boosterSavings')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                            <div *ngIf="calculatorForm.get('boosterSavings')?.errors?.['min']"> Input cannot be negative</div>
+                        </div>
+
+                        <br />
+
+                        <h4 class="form-label">Booster's property value</h4>
+                        <div class="input-group"
+                            [ngClass]="calculatorForm.get('boosterValue')?.invalid ? 'has-danger': ''">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-pound-sign text-color-lbg-charcoal"></i></div>
+                            </div>
+                            <input formControlName="boosterValue" id="boosterValue" name="boosterValue" [(ngModel)]="boosterValue" class="form-control"
+                                placeholder="{{0 | number:'1.2-2'}}" type="text" minlength="2">
+                        </div>
+                        <div *ngIf="calculatorForm.get('boosterValue')?.touched && calculatorForm.get('boosterValue')?.invalid">
+                            <div *ngIf="calculatorForm.get('boosterValue')?.errors?.['minLength']"> 'Booster's property value' must be a value greater than 9</div>
+                            <div *ngIf="calculatorForm.get('boosterValue')?.errors?.['pattern']"> Input currency in the format  {{'10000000' | number:'1.2-2' }}</div>
+                            <div *ngIf="calculatorForm.get('boosterValue')?.errors?.['min']"> Input cannot be negative</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer" style="background-color: inherit; border-top: none;">
+            <p style="text-align: center;">This calculator is only an estimate of how much you may be able to
+                borrow.
+                Create a plan and seek
+                mortgage advice to get a more personalised figure.</p>
+            <button class="btn btn-round btn-lg prime-btn" type="submit" [disabled]="!calculatorForm.valid"
+                style="width: 100%;">See your budget</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- Results -->
+<div class="container" *ngIf="isResultAvailable">
+    <div class="section card" *ngIf="isMortgageAllowed">
+        <h2 class="display-2 text-center">You could buy that home for</h2>
+        <h1 class="display-1 text-center"><span class="fa fa-pound-sign"></span> {{finalBestValue | number:'1.2-2'}}</h1>
+    </div>
+    <div class="section card" *ngIf="!isMortgageAllowed">
+        <h2 class="display-2 text-center" *ngIf="isMortgagaRoute">You couldn't afford to buy a home.</h2>
+        <h2 class="display-2 text-center" *ngIf="!isMortgagaRoute">You couldn't afford to remortgage.</h2>
+    </div>
+    <div class="card card-plain">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h5 class="display-4">Your details</h5>
+                </div>
+                <div class="col">
+                    <a class="fa fa-edit" href="javascript:void(0)" (click)="selectCorrectMortgageTab()"
+                        style="color: black; text-align: right; display:inline-block; width:100%;">edit</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <ul class="row">
+                <li class="col flex-align-horizontal-center"
+                    style="flex-direction: column;"
+                    *ngIf="isMortgagaRoute">
+                    <button class="btn btn-icon btn-round" (click)="scrollToView('buyerDetails')" [disabled]="isBuyerSelected">
+                        <i [ngClass]="isBuyerSelected ? 'fa fa-check' : 'fa fa-plus'"></i>
+                    </button>
+                    <span style="color: black;">Buyer</span>
+                </li>
+                <li class="col flex-align-horizontal-center"
+                    style="flex-direction: column;"
+                    *ngIf="isMortgagaRoute">
+                    <button class="btn btn-icon btn-round" (click)="scrollToView('propertyDetails')" [disabled]="ispropertySelected">
+                        <i [ngClass]="ispropertySelected ? 'fa fa-check' : 'fa fa-plus'"></i>
+                    </button>
+                    <span style="color: black;">Property</span>
+                </li>
+
+                <li class="col flex-align-horizontal-center"
+                    style="flex-direction: column;"
+                    *ngIf="!isMortgagaRoute">
+                    <button class="btn btn-icon btn-round" (click)="scrollToView('mortgageDetails')" [disabled]="isMortgageSelected">
+                        <i [ngClass]="isMortgageSelected ? 'fa fa-check' : 'fa fa-plus'"></i>
+                    </button>
+                    <span style="color: black;">Existing mortgage</span>
+                </li>
+
+                <li class="col flex-align-horizontal-center"
+                    style="flex-direction: column;">
+                    <button class="btn btn-icon btn-round" (click)="scrollToView('boosterDetails')" [disabled]="isBoosterSelected">
+                        <i [ngClass]="isBoosterSelected ? 'fa fa-check' : 'fa fa-plus'"></i>
+                    </button>
+                    <span style="color: black;">Booster</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Standard mortgage / remortgage -->
+        <div class="col-md-4" style="padding: 10px;" *ngIf="isMortgageAllowed && standardEstimate > 0">
+            <div class="card background-lbg-grey" style="min-height: 600px;">
+                <div class="card-header" *ngIf="isMortgagaRoute">
+                    <h3 class="display-4 text-center">With a Standard mortgage you could buy a home upto <span
+                            class="fa fa-pound-sign"></span> {{standardEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-header"  *ngIf="!isMortgagaRoute">
+                    <h3 class="display-4 text-center">Remortgage with a Standard mortgage for <span
+                            class="fa fa-pound-sign"></span> {{standardEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-body" *ngIf="isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Put down a deposit and borrow the rest with a stard mortgage, Coan't borrow enough? Boost what
+                        you
+                        can afford with a range of specialist mortgage schemes. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me
+                            more</a>
+                    </p>
+                </div>
+                <div class="card-body" *ngIf="!isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Switch to a new mortage deal with a new lender. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me
+                            more</a>
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <h3>Mortgage example</h3>
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="header text-color-lbg-charcoal">rates</th>
+                                    <th class="header text-color-lbg-charcoal">monthly cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td  class="text-color-lbg-charcoal">{{standardRate| number:'1.2-2'}} %</td>
+                                    <td  class="text-color-lbg-charcoal"><span class="fa fa-pound-sign"></span> {{standardMonthly| number:'1.2-2'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <button class="btn-primary btn-simple">Get a personalised rate</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part buy part rent mortgage / remortgage-->
+        <div class="col-md-4" style="padding: 10px;" *ngIf="isMortgageAllowed && partBuyPartRentEstimate > 0">
+            <div class="card  background-lbg-grey" style=" min-height: 600px;">
+                <div class="card-header" *ngIf="isMortgagaRoute">
+                    <h3 class="display-4 text-center" > With a Part buy, part rent you could buy that <span
+                            class="fa fa-pound-sign"></span> {{partBuyPartRentEstimate | number:'1.2-2'}} home</h3>
+                </div>
+                <div class="card-header" *ngIf="!isMortgagaRoute">
+                    <h3 class="display-4 text-center" >Remortgage with a Part & part mortgage for upto <span
+                            class="fa fa-pound-sign"></span> {{partBuyPartRentEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-body" *ngIf="isMortgagaRoute">
+                    <p class="card-subtitle" >
+                        Buy a share of a home and pay rent on the rest. Over time, you can staircase up to full
+                        ownership. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-body" *ngIf="!isMortgagaRoute">
+                    <p class="card-subtitle" >
+                        Lower your monthly costs while still chipping away at your mortgage loan. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <h3>Mortgage example</h3>
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="header text-color-lbg-charcoal">rates</th>
+                                    <th class="header text-color-lbg-charcoal">monthly cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-color-lbg-charcoal">{{partBuyPartRate| number:'1.2-2'}} %</td>
+                                    <td class="text-color-lbg-charcoal"><span class="fa fa-pound-sign"></span> {{partBuyPartMonthly| number:'1.2-2'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <button class="btn-primary btn-simple">Get a personalised rate</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booster mortgage / remortgage -->
+        <div class="col-md-4" style="padding: 10px;" *ngIf="isBoosterSelected && isMortgageAllowed&& boosterEstimate > 0">
+            <div class="card background-lbg-grey" style=" min-height: 600px;">
+                <div class="card-header" *ngIf="isMortgagaRoute">
+                    <h3 class="display-4 text-center">With a Guarantor mortgage you could buy a home upto <span
+                            class="fa fa-pound-sign"></span> {{boosterEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-header" *ngIf="!isMortgagaRoute">
+                    <h3 class="display-4 text-center"> Remortgage with an Income Boost mortgage for <span
+                            class="fa fa-pound-sign"></span> {{boosterEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-body" *ngIf="isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Buy with help form loved one, using their savings, pentsion or income to increase your
+                        affordability. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-body" *ngIf="!isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Add a guarantor to boost your affordability, helping you remortgage. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <h3>Mortgage example</h3>
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="header text-color-lbg-charcoal">rates</th>
+                                    <th class="header text-color-lbg-charcoal">monthly cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td  class="text-color-lbg-charcoal">{{boosterRate| number:'1.2-2'}} %</td>
+                                    <td  class="text-color-lbg-charcoal"><span class="fa fa-pound-sign"></span> {{boosterMonthly| number:'1.2-2'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <button class="btn-primary btn-simple">Get a personalised rate</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family remortgage mortgage / Interest only remortgage-->
+        <div class="col-md-4" style="padding: 10px;" *ngIf="isMortgageAllowed && familyRemortgageEstimate > 0">
+            <div class="card background-lbg-grey" style=" min-height: 600px;">
+                <div class="card-header" *ngIf="isMortgagaRoute">
+                    <h3 class="display-4 text-center"> With a Family remortgage you could buy a home worth upto <span
+                            class="fa fa-pound-sign"></span> {{familyRemortgageEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-header" *ngIf="!isMortgagaRoute">
+                    <h3 class="display-4 text-center"> Remortgage with an Interest only mortgage for upto  <span
+                            class="fa fa-pound-sign"></span> {{familyRemortgageEstimate | number:'1.2-2'}}</h3>
+                </div>
+                <div class="card-body" *ngIf="isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Build a deposit or increase your borrowing by releasing equity from a family member's property. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-body" *ngIf="!isMortgagaRoute">
+                    <p class="card-subtitle">
+                        Change to invest-only to make your monthly costs more affordable. <a href="javascript:void(0)" class="text-color-lbg-charcoal">Tell me more</a>
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <h3>Mortgage example</h3>
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="header text-color-lbg-charcoal">rates</th>
+                                    <th class="header text-color-lbg-charcoal">monthly cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td  class="text-color-lbg-charcoal">{{familyRemortgageRate| number:'1.2-2'}} %</td>
+                                    <td  class="text-color-lbg-charcoal"><span class="fa fa-pound-sign"></span> {{familyRemortgageMonthly| number:'1.2-2'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <button class="btn-primary btn-simple">Get a personalised rate</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Add a Booster -->
+    <div class="col" *ngIf="isMortgagaRoute && !isBoosterSelected">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="display-4 text-center">Increase your borrowing by adding a Booster</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-subtitle">
+                    A Booster is a friend or a family member who is willing to support your mortage application, either using their income or property.
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn-primary btn-simple" style="width: 100%;" (click)="scrollToView('boosterDetails')">Add a Booster</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="section">
+        <div>
+            Get a personalized plan
+            Take a more detailed look at how you could buy a home. Get a personalized recommedation showing
+            you live interest rates and monthly payments.
+            <button class="btn btn-round btn-lg prime-btn" style="width:100%">Get started</button>
+        </div>
+    </div>
+</div>
