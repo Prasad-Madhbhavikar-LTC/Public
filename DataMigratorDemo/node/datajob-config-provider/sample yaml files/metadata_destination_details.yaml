@@ -1,9 +1,0 @@
----
-jobName: "metadata"
-jobDescription: "metadata transfer"
-destination:
-  format: "avro"
-  bucket: "GCP:Bucket"
-  path: "path"
-  name: "name"
-  prefix: "prefix"
