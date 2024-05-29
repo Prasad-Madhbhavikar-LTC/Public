@@ -1,0 +1,24 @@
+spring:application.name: MortgageManagementSystem
+
+
+server:
+  port: 8090
+  servlet.contextPath: /mortgage-service/api
+
+spring:
+  profiles:
+    include: mortgage-config,stamp-duty-config
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:employee.db
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    properties:
+      hibernate:
+        order_inserts: true
+        generate_statistics: false
+        jdbc:
+          batch_size: 20

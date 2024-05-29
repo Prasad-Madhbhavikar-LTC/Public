@@ -1,0 +1,39 @@
+mortgage:
+  lending.multiplier: 4.5
+  lending.multiplier.without-property-mention: 5.5
+  eligible.min.saving: 1000
+  family:
+    property:
+      booster:
+        percentage: 90
+  default.term: 25
+  standardMortgage:
+    interestRate: 4.85
+  partBuyPartRent:
+    interestRate: 4.75
+  guarantorMortgage:
+    interestRate: 5.19
+  familyMortgage:
+    interestRate: 4.85
+
+remortgage:
+  lending:
+    multiplier: 4.5
+  standardMortgage:
+    interestRate: 4.2
+  default.term: 25
+
+netIncome:
+  income:
+    tax-slab: 0,12570,50270,150000
+    tax-rate: 0.0f,0.20f,.40f,0.45f
+  national-insurance:
+    slab: 0,12570,50270
+    permanent-employee:
+      slab-rate: 0.0f,0.12f,0.02f
+    self-employee:
+      slab-rate: 0.0f,0.09f,0.02f
+
+
+
+

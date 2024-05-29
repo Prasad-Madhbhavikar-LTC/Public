@@ -1,0 +1,64 @@
+stamp-duty:
+  england:
+    ukResident:
+      firstTimeBuyer:
+        slab: 0,425000,925000,1500000
+        rate: 0.0f,0.05f,0.10f,0.12f
+      moveHome:
+        slab: 0,250000,925000,1500000
+        rate: 0.0f,0.05f,0.10f,0.12f
+      additionalProperty:
+        slab: 0,250000,925000,1500000
+        rate: 0.03f,0.08f,0.13f,0.15f
+    nonUKResident:
+      firstTimeBuyer:
+        slab:
+        rate:
+      moveHome:
+        slab:
+        rate:
+      additionalProperty:
+        slab:
+        rate:
+  scotland:
+    ukResident:
+      firstTimeBuyer:
+        slab: 0,425000,925000,1500000
+        rate: 0.0f,0.05f,0.10f,0.12f
+      moveHome:
+        slab:
+        rate:
+      additionalProperty:
+        slab:
+        rate:
+    nonUKResident:
+      firstTimeBuyer:
+        slab:
+        rate:
+      moveHome:
+        slab:
+        rate:
+      additionalProperty:
+        slab:
+        rate:
+  wales:
+    ukResident:
+      firstTimeBuyer:
+        slab: 0,425000,925000,1500000
+        rate: 0.0f,0.05f,0.10f,0.12f
+      moveHome:
+        slab:
+        rate:
+      additionalProperty:
+        slab:
+        rate:
+    nonUKResident:
+      firstTimeBuyer:
+        slab:
+        rate:
+      moveHome:
+        slab:
+        rate:
+      additionalProperty:
+        slab:
+        rate:
