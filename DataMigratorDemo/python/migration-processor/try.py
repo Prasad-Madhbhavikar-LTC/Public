@@ -171,3 +171,13 @@ if __name__ == "__main__":
         pass
 
     spark.stop()
+
+
+#  sc = spark.sparkContext
+#  sc._jsc.sc().addSparkListener(CustomSparkListener(kafka_producer))
+
+# Start Spark Streaming Context if needed for your use case
+    # ssc = StreamingContext(sc, 5)
+    # ssc.addStreamingListener(CustomStreamingListener(kafka_producer))
+    # ssc.start()
+    # ssc.awaitTermination()
