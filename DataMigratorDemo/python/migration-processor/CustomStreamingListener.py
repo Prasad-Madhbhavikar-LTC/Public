@@ -2,10 +2,11 @@ import json
 import time
 import logging
 from kafka import KafkaProducer
-from pyspark import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.listener import StreamingListener
-from pyspark.sql import SparkSession, Row
+from pyspark.sql import Row
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -107,42 +108,3 @@ class CustomSparkListener(SparkListener):
                 logger.info(f"Sent event 'executor_metrics_update' to Kafka: {event_data}")
         except Exception as e:
             logger.error(f"Failed to process 'executor_metrics_update' event: {e}")
-
-def main():
-    conf = SparkConf().setAppName("StreamingMetricsApp")
-    sc = SparkContext(conf=conf)
-    
-    # Initialize Kafka producer
-    kafka_producer = KafkaProducer(bootstrap_servers='localhost:9092')
-    
-    # Register Custom Listeners
-    sc._jsc.sc().addSparkListener(CustomSparkListener(kafka_producer))
-    
-    ssc = StreamingContext(sc, 5)
-    ssc.addStreamingListener(CustomStreamingListener(kafka_producer))
-
-    # Example DStream processing
-    lines = ssc.socketTextStream("localhost", 9999)
-    words = lines.flatMap(lambda line: line.split(" "))
-    word_counts = words.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
-
-    def save_to_db(rdd):
-        if not rdd.isEmpty():
-            spark = SparkSession.builder.config(conf=rdd.context.getConf()).getOrCreate()
-            df = rdd.map(lambda x: Row(word=x[0], count=x[1])).toDF()
-            df.write.format("jdbc").options(
-                url="jdbc:mysql://localhost:3306/streaming",
-                driver="com.mysql.cj.jdbc.Driver",
-                dbtable="word_counts",
-                user="root",
-                password="password"
-            ).mode("append").save()
-            logger.info(f"Saved {df.count()} records to MySQL")
-
-    word_counts.foreachRDD(save_to_db)
-
-    ssc.start()
-    ssc.awaitTermination()
-
-if __name__ == "__main__":
-    main()
