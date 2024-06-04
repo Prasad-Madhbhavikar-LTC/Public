@@ -27,4 +27,17 @@ tr td {
 	text-align: left;
 	max-width: 928px;
 	min-width: 320px;
+    background-color: #eee;
+}
+
+h2 {
+    background-image: linear-gradient(to left, #75B94E, #006A4D);
+    color: white;
+    padding: 5px;
+}
+
+.tbl th, .tbl td {
+    padding: 3px;
+    width: 50%;
+    border-bottom: 1px solid #ccc;
 }
