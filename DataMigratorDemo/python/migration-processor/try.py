@@ -1,14 +1,7 @@
-import os
-import yaml
-from pyspark.sql import SparkSession
-from pyspark.sql.types import *
-from datetime import datetime
-import pyspark_spy
-
-from Kafka import KafkaEventProducer, SparkKafkaEventsListener
 import argparse
-
-class datasourcefactory:
+import logging.config
+logging.config.fileConfig('resources/logging.conf')
+class Datasourcefactory:
     @staticmethod
     def read_data_source(spark, source_details, job_config):
         source_type = source_details['source_type']
@@ -88,7 +81,7 @@ class DataMigrator:
         return combined_config
 
     def read_data_source(self, source_details, job_config):
-        data_source = datasourcefactory.read_data_source(self.spark, source_details, job_config)
+        data_source = Datasourcefactory.read_data_source(self.spark, source_details, job_config)
         return data_source.read_data()
 
     def df_transformation(self, df, source_details):

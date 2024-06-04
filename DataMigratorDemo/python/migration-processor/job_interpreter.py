@@ -1,5 +1,8 @@
-class JobInterpreter:
-    def __init__(self,job_config):
+from abc import ABC
+
+
+class JobInterpreter(ABC):
+    def __init__(self,job_config) -> None:
         self.job_config=job_config
 
 

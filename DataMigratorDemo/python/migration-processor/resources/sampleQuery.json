@@ -1,0 +1,69 @@
+{
+  "containers": [
+    {
+      "name": "users",
+      "fields": [
+        {
+          "field": "name",
+          "type": "varchar(20)"
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "field": "name",
+      "container": "users"
+    }
+  ],
+  "joins": [
+    {
+      "type": "LEFT INNER",
+      "leftContainer": "users",
+      "leftField": "id",
+      "rightContainer": "orders",
+      "rightField": "user_id",
+      "predicates" : [
+        {
+          "field": "age",
+          "operator": ">",
+          "value": 18
+        }
+      ]
+    }
+  ],
+  "predicates": [
+    {
+      "field": "age",
+      "operator": ">",
+      "value": 18
+    }
+  ],
+  "aggregations": [
+    {
+      "field": "salary",
+      "function": "sum"
+    },
+    {
+      "field": "age",
+      "function": "avg"
+    }
+  ],
+  "filters": [
+    {
+      "field": "name",
+      "operator": "like",
+      "value": "%John%"
+    }
+  ],
+  "sorts": [
+    {
+      "field": "age",
+      "order": "desc"
+    },
+    {
+      "field": "name",
+      "order": "asc"
+    }
+  ]
+}

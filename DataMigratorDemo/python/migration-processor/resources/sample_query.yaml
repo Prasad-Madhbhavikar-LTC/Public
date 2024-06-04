@@ -1,0 +1,57 @@
+containers:
+  - name: users
+    fields:
+      - field: name
+        type: varchar(20)
+  - name: orders
+  - name: products
+  - name: suppliers
+
+projections:
+  - field: name
+    container: users
+  - field: age
+  - field: count(id)
+  - field: avg(salary)
+
+joins:
+  - leftContainer: users
+    rightContainer: orders
+    on:
+      leftField: id
+      rightField: user_id
+  - leftContainer: orders
+    rightContainer: products
+    on:
+      leftField: product_id
+      rightField: id
+  - leftContainer: products
+    rightContainer: suppliers
+    on:
+      leftField: supplier_id
+      rightField: id
+
+predicates:
+  - field: age
+    operator: '>'
+    value: 18
+  - field: salary
+    operator: '<'
+    value: 50000
+
+aggregations:
+  - field: salary
+    function: sum
+  - field: age
+    function: avg
+
+filters:
+  - field: name
+    operator: 'like'
+    value: '%John%'
+
+sorts:
+  - field: age
+    order: desc
+  - field: name
+    order: asc

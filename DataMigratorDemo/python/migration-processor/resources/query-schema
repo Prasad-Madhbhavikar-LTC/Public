@@ -1,0 +1,56 @@
+type: map
+mapping:
+  projections:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          field: { type: str }
+  containers:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          name: { type: str }
+  joins:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          leftContainer: { type: str }
+          rightContainer: { type: str }
+          on:
+            type: map
+            mapping:
+              leftField: { type: str }
+              rightField: { type: str }
+  predicates:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          field: { type: str }
+          operator: { type: str }
+          value: { type: any }
+  aggregations:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          field: { type: str }
+          function: { type: str }
+  filters:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          field: { type: str }
+          operator: { type: str }
+          value: { type: any }
+  sorts:
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          field: { type: str }
+          order: { type: str, enum: ['asc', 'desc'] }

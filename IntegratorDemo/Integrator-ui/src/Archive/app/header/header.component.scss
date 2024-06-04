@@ -1,0 +1,68 @@
+
+/* header */
+
+.outer {
+    position: relative;
+    margin: 0 auto;
+    padding: 12px 36px;
+    border-bottom: 0;
+	text-align: left;
+	max-width: 928px;
+	min-width: 320px;
+}
+
+#header p#logo {     
+    // position: absolute;
+    left: 5px;
+    top: 24px;
+    margin: 0 0 0 3px;
+    width: 210px;
+    height: 52px;
+    z-index: 10;
+    overflow: inherit;
+    background:transparent url(../../assets/images/logo_header.png) no-repeat scroll 0 0;
+}
+
+#header .secureMsg {
+    float: right;
+    margin: 14px 16px 14px 15px;
+    padding: 6px 2px 0px 2px;
+    width: 280px;
+    background: transparent;
+    border: 1px solid #fff;
+}
+
+#header .secureMsg p a {
+    display: block;
+    margin: 0;
+    padding: 0 0 0 35px;
+    text-decoration: underline;
+    color: #fff;
+    background: none;
+}
+
+#header .secureMsg p.msg {
+	min-height: 16px;
+	margin: 0;
+	padding: 5px 0 0 35px;
+	font-size: 1.6em;
+	background: url(../../assets/images/padlock.png) 4% 0 no-repeat;
+	background-size: 13px;
+}
+
+.secureMsg p:last-child {
+    margin-top: 4px;
+    margin-left: 4px;
+    font-family: 'Lloyds_Jack_Light', Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+// .pageWrap {
+//     background: none;
+//     display: block;
+//     max-width: 978px;
+//     min-width: 320px;
+//     margin: 0 auto;
+//     padding: 20px;
+//     text-align: left;
+// }

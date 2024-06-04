@@ -5,13 +5,14 @@
     </div>
 
     <div class="col-lg-6 align-vertically">
-        <table>
+        <table class="tbl">
+            <tbody>
             <tr *ngIf="user.gender">
-                <td><strong>Gender</strong></td>
+                <th>Gender</th>
                 <td>{{user.gender}}</td>
             </tr>
             <tr>
-                <td><strong>Phone</strong></td>
+                <th>Phone</th>
                 <td>{{user.phone}}</td>
             </tr>
             <tr>
@@ -48,6 +49,7 @@
                 <td><strong>PAN</strong></td>
                 <td>{{user.kyc.pan}}</td>
             </tr>
+        </tbody>
         </table>
 
     </div>
