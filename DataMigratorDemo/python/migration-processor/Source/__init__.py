@@ -1,16 +1,14 @@
 __all__ = [
-    'AbstractSource',
     'SourceFactory'
 ]
 
+import logging
 from abc import ABC, abstractmethod
 from idlelib.query import Query
 
-from pyspark import SparkContext
 from pykwalify.core import Core
+from pyspark import SparkContext
 from pyspark.sql import DataFrame
-
-import logging
 
 from Core import Type
 
@@ -26,9 +24,6 @@ class AbstractSource(ABC):
     @abstractmethod
     def read(self, query: Query):
         raise NotImplementedError("Subclasses must implement read method")
-
-
-
 
 
 class Query1:
@@ -110,9 +105,6 @@ class Query1:
     #
     #     self.logger.info('Built query: %s', query)
     #     return query
-
-    from pyspark.sql import SparkSession
-    from pyspark.sql.functions import col, avg, sum, count, expr
 
     def build_query(self, spark_context: SparkContext) -> DataFrame:
         master_data_frame = spark.table(self._containers[0])

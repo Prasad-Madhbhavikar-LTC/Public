@@ -1,32 +1,31 @@
 __all__ = [
     'Format',
-    'Type'
+    'Type',
+    'Migrator'
 ]
 
 import logging
-from enum import Enum
+from enum import Enum, auto
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 
 class Format(Enum):
-    UNSUPPORTED = 0
-    CSV = 1
-    PARQUET = 2
-    JSON = 3
-    XML = 4
-    IMAGE = 10
-
-
-    VIDEO = 11
-    AUDIO = 12
-    TABLE = 20
+    UNSUPPORTED = auto()
+    CSV = auto()
+    PARQUET = auto()
+    JSON = auto()
+    XML = auto()
+    IMAGE = auto()
+    VIDEO = auto()
+    AUDIO = auto()
+    TABLE = auto()
 
 
 class Type(Enum):
-    UNSUPPORTED = 0
-    DATABASE = 1
-    FILE_SYSTEM = 2
-    BUCKET = 10
-    STREAM = 11
-    FTP = 12
+    UNSUPPORTED = auto()
+    DATABASE = auto()
+    FILE_SYSTEM = auto()
+    BUCKET = auto()
+    STREAM = auto()
+    FTP = auto()

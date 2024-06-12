@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+
 from confluent_kafka import Producer
 
 from Emmiters import AbstractEmitter

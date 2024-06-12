@@ -1,6 +1,5 @@
-import json
-import time
 import logging
+import time
 from typing import Any
 
 from pyspark.streaming.listener import StreamingListener

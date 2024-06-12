@@ -1,11 +1,13 @@
 __all__ = [
-    "AbstractQueryInterpreter",
+    "CSVQueryInterpreter",
 ]
 
 import logging
 from abc import ABC, abstractmethod
 
 from pyspark.sql import SparkSession, DataFrame
+
+from Core.Configurations import AbstractConfig
 
 LOGGER = logging.getLogger(__name__)
 
@@ -22,14 +24,12 @@ class AbstractQueryInterpreter(ABC):
         self._fields = {}
 
     @abstractmethod
-    def interpret(self, spark: SparkSession) -> DataFrame:
+    def interpret(self, spark: SparkSession, config: AbstractConfig) -> DataFrame:
         raise NotImplementedError("Subclass must implement interpret() method")
 
     def load_query(self, raw_query_spec):
+        # FIXME: Should load the query part from the Configurations ??
         pass
-
-
-
 
 #
 # import yaml
