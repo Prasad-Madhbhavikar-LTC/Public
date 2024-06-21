@@ -1,13 +1,13 @@
 from pyspark.sql import SparkSession, DataFrame
 
-from Core.Configurations import AbstractConfig
+from Core.Configurations import AbstractConfig1
 from Interpretors import AbstractQueryInterpreter
 
 
 class DatabaseQueryInterpreter(AbstractQueryInterpreter):
     def __init__(self):
         super().__init__()
-    def interpret(self, spark: SparkSession, config:AbstractConfig) -> DataFrame:
+    def interpret(self, spark: SparkSession, config:AbstractConfig1) -> DataFrame:
         raise NotImplementedError("Sorry, interpret() method is not implemented")
         # master_data_frame = spark.table(self._containers[0]['name'])
         #

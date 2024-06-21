@@ -1,0 +1,13 @@
+name: "Test_job_pre-demo"
+description: "Test Job for demo"
+version: 1.0.0
+sign: qwertyuidfghj
+
+destination:
+  type: BUCKET
+  format: CSV
+
+  bucket: "GCP:SOMEBUCKET"
+  path: "/home/prasad/Development/Public/DataMigratorDemo/Processing_Folder/Sink"
+  name: "Some demo test"
+  prefix: "Test"

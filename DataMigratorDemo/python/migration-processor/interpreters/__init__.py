@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 
 from pyspark.sql import SparkSession, DataFrame
 
-from Core.Configurations import AbstractConfig
+from Core.Configurations import AbstractConfig1
 
 LOGGER = logging.getLogger(__name__)
 
@@ -24,7 +24,7 @@ class AbstractQueryInterpreter(ABC):
         self._fields = {}
 
     @abstractmethod
-    def interpret(self, spark: SparkSession, config: AbstractConfig) -> DataFrame:
+    def interpret(self, spark: SparkSession, config: AbstractConfig1) -> DataFrame:
         raise NotImplementedError("Subclass must implement interpret() method")
 
     def load_query(self, raw_query_spec):

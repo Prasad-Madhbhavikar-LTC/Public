@@ -1,0 +1,10 @@
+name: "Test_job_pre-demo"
+description: "Test Job for demo"
+version: 1.0.0
+sign: qwertyuidfghj
+
+config:
+  secret:
+    url: "some url"
+    access_key: "some key"
+    secret_key: "some key"
