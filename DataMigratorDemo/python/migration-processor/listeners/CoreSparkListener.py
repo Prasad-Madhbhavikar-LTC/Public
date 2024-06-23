@@ -2,7 +2,7 @@ import logging
 import time
 from typing import Any
 
-from Emmiters import AbstractEmitter
+from emitters import AbstractEmitter
 
 LOGGER = logging.getLogger(__name__)
 

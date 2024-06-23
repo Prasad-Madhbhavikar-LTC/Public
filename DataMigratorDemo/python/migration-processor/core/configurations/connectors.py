@@ -10,7 +10,7 @@ class FileSystemConfig(AbstractConnectorConfig):
         super().__init__(config_type, config_path)
         self._path: str = ""
     def _read_config(self, config: dict) -> None:
-
+        pass
 
 
 

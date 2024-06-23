@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession, DataFrame
 
-from Core.Configurations import AbstractConfig1
-from Interpretors import AbstractQueryInterpreter
+from core.configurations import AbstractConfig1
+from interpreters import AbstractQueryInterpreter
 
 
 class DatabaseQueryInterpreter(AbstractQueryInterpreter):

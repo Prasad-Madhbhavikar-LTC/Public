@@ -2,7 +2,7 @@ import json
 import logging
 import time
 
-from Emmiters import AbstractEmitter
+from emitters import AbstractEmitter
 
 LOGGER = logging.getLogger(__name__)
 

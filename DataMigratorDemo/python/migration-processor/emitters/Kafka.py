@@ -4,7 +4,7 @@ import time
 
 from confluent_kafka import Producer
 
-from Emmiters import AbstractEmitter
+from emitters import AbstractEmitter
 
 logger = logging.getLogger(__name__)
 

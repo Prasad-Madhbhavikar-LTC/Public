@@ -10,7 +10,7 @@ from pykwalify.core import Core
 from pyspark import SparkContext
 from pyspark.sql import DataFrame
 
-from Core import Type
+from core import Type
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 

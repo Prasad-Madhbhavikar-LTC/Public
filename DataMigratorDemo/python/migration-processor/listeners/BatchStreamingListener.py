@@ -4,7 +4,7 @@ from typing import Any
 
 from pyspark.streaming.listener import StreamingListener
 
-from Emmiters import AbstractEmitter
+from emitters import AbstractEmitter
 
 LOGGER = logging.getLogger(__name__)
 

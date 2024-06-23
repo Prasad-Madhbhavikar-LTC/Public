@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { ActivatedRoute, NavigationExtras, Router, RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -8,13 +8,16 @@ import { BankComponent } from './bank/bank.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CommonModule } from '@angular/common';
 import { SuccessComponent } from './success/success.component';
+import { LoginComponent } from './icici/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, CommonModule, HeaderComponent, CatalogueComponent, CustomerComponent, BankComponent, SuccessComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [RouterModule, CommonModule, HeaderComponent, CatalogueComponent, CustomerComponent, BankComponent, SuccessComponent, FooterComponent, LoginComponent],
+  // templateUrl: './app.component.html',
+  templateUrl: 'icici/login/login.component.html',
+  // styleUrl: './app.component.scss'
+  styleUrl: 'icici/login/login.component.scss'
 })
 export class AppComponent {
   title = 'LBG Integrator';
