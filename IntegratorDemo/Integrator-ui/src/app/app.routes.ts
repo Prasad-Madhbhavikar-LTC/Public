@@ -4,9 +4,9 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { SuccessComponent } from './success/success.component';
 
 export const routes: Routes = [
-  { path: "", redirectTo: "validate", pathMatch: "full" },
-  { path: "validate", component: AppComponent },
-  { path: "services", component: CatalogueComponent },
-  { path: "success", component: SuccessComponent },
+  { path: "", redirectTo: "/lbg/validate", pathMatch: "full" },
+  { path: "lbg/validate", component: AppComponent },
+  { path: "lbg/offerings", component: CatalogueComponent },
+  { path: "lbg/status", component: SuccessComponent },
 
 ];

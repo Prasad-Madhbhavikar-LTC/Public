@@ -6,11 +6,11 @@
     <div class="row outer">
       <div class="col-lg-12">
         <ul class="bread-crumb flex-align-horizontal-center">
-          <li><a href="javascript:void(0)" [routerLink]="['/validate']" [queryParams]="{ s: 0 }"
+          <li><a href="javascript:void(0)" [routerLink]="['/lbg/validate']" [queryParams]="{ s: 0 }"
               [ngClass]="{selected: selectedStep === 0}">Validate Details</a></li>
-          <li><a id='services-link' href="javascript:void(0)" [routerLink]="['/services']" [queryParams]="{ s: 1 }"
+          <li><a id='services-link' href="javascript:void(0)" [routerLink]="['/lbg/offerings']" [queryParams]="{ s: 1 }"
               [ngClass]="{selected: selectedStep === 1}" class="disabled-link">Select services</a></li>
-          <li><a id='success-link' href="javascript:void(0)" [routerLink]="['/success']" [queryParams]="{ s: 2 }"
+          <li><a id='success-link' href="javascript:void(0)" [routerLink]="['/lbg/status']" [queryParams]="{ s: 2 }"
               [ngClass]="{selected: selectedStep === 2}" class="disabled-link">Complete</a></li>
         </ul>
       </div>

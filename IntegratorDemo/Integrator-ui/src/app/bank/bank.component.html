@@ -99,9 +99,47 @@
             </tr>
             <tr>
                 <td><strong>KYC Validation</strong></td>
-                <td>{{kycStatus === 1 ? "Approved" : kycStatus ===0 ? "In Progress" : "Rejected"}}</td>
+
+                <td (click)="showKycHelp()">
+                    <div [ngClass]="{
+                        'blue': kycStatus === 0,
+                        'green': kycStatus === 1,
+                        'red': kycStatus < 0,
+                        'orange': kycStatus > 1,
+                    }">{{ getKycStatusText(kycStatus) }} </div>
+                </td>
             </tr>
         </table>
+        <div id="kycHelp" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">KYC Approval Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>{{statusText}}</h3><br>
+                        <p>{{kycStatusDescription}}</p><br><br>
+
+                        <div *ngIf="possibleReasons.length > 0">
+                            <h3>Possible Reasons</h3><br>
+                            <ul>
+                                <li *ngFor="let item of possibleReasons">{{ item }}</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>What to do next</h3><br>
+                        <ul>
+                            <li *ngFor="let item of whatNext">{{ item }}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- <button id="submitButton" type="submit" class="submitAction" disabled>Details are correct</button> -->
     <!-- <button id="cancelButton" type="submit" class="submitAction" disabled>Cancel</button> -->

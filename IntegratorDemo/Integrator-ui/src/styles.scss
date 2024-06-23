@@ -52,6 +52,40 @@ a {
     text-decoration: underline;
 }
 
+@keyframes blink {
+    0%, 100% { opacity: 1;}
+    50% {opacity: 0;}
+}
+
+.blink-element {
+    animation: blink 1s linear infinite;
+}
+
+.red{
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    animation: blink 1s linear infinite;
+}
+
+.green{
+    color: green;
+}
+
+.blue{
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+    animation: blink 1s linear infinite;
+}
+
+.orange{
+    color: orange;
+    font-weight: bold;
+    cursor: pointer;
+    animation: blink 1s linear infinite;
+}
+
 // /* text fields */
 // .formField input[type='text'],
 // .formField input[type='password'] {

@@ -88,7 +88,7 @@ export class CatalogueComponent {
         s: 2
       }
     };
-    this.router.navigate(['/success'], navigationExtras);
+    this.router.navigate(['/lbg/status'], navigationExtras);
   };
 
   ngOnInit(): void {

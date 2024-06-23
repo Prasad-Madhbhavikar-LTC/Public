@@ -35,5 +35,15 @@ export class AccountDataService {
     this._integrationID = value;
   }
 
+  private _kycStatus: number = -1;
+
+  public get kycStatus(): number {
+    return this._kycStatus;
+  }
+
+  public set kycStatus(value: number) {
+    this._kycStatus = value;
+  }
+
   constructor() { }
 }
