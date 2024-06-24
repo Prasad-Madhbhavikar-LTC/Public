@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Bank } from './bank';
 import { AccountDataService } from '../services/account-data.service';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 declare var $: any;
 
@@ -65,14 +65,20 @@ export class BankComponent {
   protected whatNext: any = [];
   protected possibleReasons: any = [];
 
-  constructor(private dataService: AccountDataService, @Inject(DOCUMENT) document: any, private router: Router) { }
+  constructor(private dataService: AccountDataService, @Inject(DOCUMENT) document: any, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.kycStatus = parseInt(params['k']) || 0;
+    });
+   }
 
   ngOnInit(): void {
     this.dataService.integrationID = this.destinationBank.integrationID;
     let that = this;
     setTimeout(function () {
       let link = document.getElementById("services-link");
-      that.kycStatus = 1;
+      if (that.kycStatus == 0){
+        that.kycStatus = 1;
+      }
       if (that.kycStatus == 1) {
         link?.classList.remove('disabled-link');
       }

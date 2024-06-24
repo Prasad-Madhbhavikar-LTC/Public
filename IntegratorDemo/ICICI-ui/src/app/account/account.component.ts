@@ -9,7 +9,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
-  name: string ="any";
+  name: string ="John Doe";
   constructor(private router: Router) { }
 
   submit(): void {

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './success.component.scss'
 })
 export class SuccessComponent {
-  name: string = "any";
+  name: string ="John Doe";
   submit() {
     window.location.href = "http://localhost:4191";
   }
