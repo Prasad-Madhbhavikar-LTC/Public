@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: foundation-component-role-binding
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: foundation-component-service-account
+    namespace: default
+roleRef:
+  kind: Role
+  name: foundation-component-role-binding
+  apiGroup: rbac.authorization.k8s.io

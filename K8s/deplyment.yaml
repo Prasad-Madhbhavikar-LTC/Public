@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foundation-component-audit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foundation-component-audit
+  template:
+    metadata:
+      labels:
+        app: foundation-component-audit
+    spec:
+      serviceAccountName: foundation-component-service-account
+      containers:
+        - name:  foundation-component-audit-container
+          image: europe-docker.pkg.dev/playpen-e16de4/main/amazoncorretto:17-alpine
+          env:
+            - name: DB_NAME
+              value: postgres
+            - name: DB_HOST
+              value: 127.0.0.1
+            - name: DB_USER
+              value: admin
+            - name: DB_PASS
+              value: admin
+          command: ["java", "-jar", "/app/foundation-component-audit-0.0.1-SNAPSHOT.jar"]
+          volumeMounts:
+            - name: jar-volume
+              mountPath: /app
+            - name: config-volume
+              mountPath: /etc/config
+
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          command: [ "/cloud-sql-proxy", "-instances=playpen-e16de4:europe-west1:postgresql-primary=tcp:5432"]
+
+      initContainers:
+        - name: copy-file-init-container
+          image: google/cloud-sdk:slim
+          command: ["/bin/sh", "-c"]
+          args:
+            - gsutil cp gs://playpen-e16de4-lib-bucket/foundation-component-audit-0.0.1-SNAPSHOT.jar /app/foundation-component-audit-0.0.1-SNAPSHOT.jar
+          volumeMounts:
+            - name: jar-volume
+              mountPath: /app
+
+      volumes:
+        - name: jar-volume
+          persistentVolumeClaim:
+            claimName: foundation-component-pvc
+        - name: config-volume
+          configMap:
+            name: foundation-component-audit-config

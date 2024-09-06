@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: foundation-component-audit-config
+data:
+  foundation-component-dataproc-project-id: "playpen-e16de4"
+  foundation-component-dataproc-region: "europe-west1"
+  foundation-component-dataproc-cluster-name: "dp-cluster"
+  foundation-component-kafka-url: "your-kafka-url"
+  foundation-component-audit-db-url: ""
+  foundation-component-audit-user: "audit-user"
+  foundation-component-audit-user-password: "mysecretpassword"
